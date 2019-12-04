@@ -13,7 +13,7 @@
 
 Route::view('/', 'welcome')->name('index');
 
-Route::get('/statuses', 'StatusesController@index')->name('statuses.index');
+Route::get('/statuses', 'StatusesController@index')->name('statuses.index')->middleware('auth');
 Route::post('/statuses', 'StatusesController@store')->name('statuses.store')->middleware('auth');
 
 Auth::routes();
