@@ -36,7 +36,7 @@ class CrateStatusTest extends TestCase
         $response->assertSuccessful();
 
         $response->assertJson([
-            'body' => 'Mi primer status'
+            'data' => ['body' => 'Mi primer status']
         ]);
 
     }

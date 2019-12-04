@@ -1888,7 +1888,7 @@ __webpack_require__.r(__webpack_exports__);
         body: this.body
       }).then(function (res) {
         _this.body = '';
-        EventBus.$emit('status-created', res.data);
+        EventBus.$emit('status-created', res.data.data);
       })["catch"](function (err) {
         console.log(err.response.data);
       });
@@ -1907,6 +1907,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37387,7 +37401,38 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.statusesList, function(status) {
-      return _c("div", [_vm._v(_vm._s(status.body))])
+      return _c("div", { staticClass: "card mb-3 border-0 shadow-sm" }, [
+        _c("div", { staticClass: "card-body d-flex flex-column" }, [
+          _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
+            _c("img", {
+              staticClass: "rounded-circle mr-3 shadow-sm",
+              attrs: {
+                width: "40px",
+                src: "https://aprendible.com/images/default-avatar.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", {}, [
+              _c("h5", { staticClass: "mb-1" }, [
+                _vm._v(_vm._s(status.user_name) + " ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "small text-muted" }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(status.ago) +
+                    "\n                    "
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text text-secondary" }, [
+            _vm._v(_vm._s(status.body))
+          ])
+        ])
+      ])
     }),
     0
   )

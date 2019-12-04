@@ -26,7 +26,7 @@
                 })
                     .then(res => {
                         this.body = '';
-                        EventBus.$emit('status-created', res.data);
+                        EventBus.$emit('status-created', res.data.data);
                     })
                     .catch(err => {
                         console.log(err.response.data)
