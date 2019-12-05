@@ -8,6 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 axios.defaults.baseURL = document.head.querySelector("[name=base-url]").content + '/';
+Vue.prototype.$baseUrl = document.head.querySelector('[name=base-url]').content;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
