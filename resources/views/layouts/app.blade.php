@@ -7,16 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{csrf_token()}}">
     <meta name="user" content="{{Auth::user()}}">
+    <meta name="base-url" content="{{ URL::to('/') }}">
     <link rel="stylesheet" href="{{ asset(mix('css/app.css')) }}">
-
-    <meta name="base-url" content="{{ \Illuminate\Support\Facades\URL::to('/') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
     <title>SocialApp</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light navbar-socialapp">
     <div class="container">
-        <a class="navbar-brand" href="{{route('index')}}">SocialApp</a>
+        <a class="navbar-brand" href="{{route('index')}}">
+            <i class="material-icons text-primary">supervised_user_circle</i>SocialApp
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

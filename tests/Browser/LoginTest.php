@@ -29,7 +29,7 @@ class LoginTest extends DuskTestCase
                 ->type('password', 'password')
                 ->screenshot('test')
                 ->press('#login-btn')
-                ->assertPathIs('/tdd_nuevo/public/')
+                ->assertUrlIs(route('index').'/')
                 ->assertAuthenticated();
         });
     }

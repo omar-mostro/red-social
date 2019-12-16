@@ -18,6 +18,12 @@ module.exports = {
         },
         isGuest() {
             return !this.isAuthenticated
-        }
+        },
     },
+    methods:{
+        redirectIfGuest() {
+            if (this.isGuest)
+                return window.location.href = `${this.$baseUrl}/login`;
+        }
+    }
 };

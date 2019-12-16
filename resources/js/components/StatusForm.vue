@@ -8,7 +8,9 @@
                       :placeholder="`¿Qué estás pensando ${user.name}?`"></textarea>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary" id="create-status">Publicar</button>
+                <button type="submit" class="btn btn-primary" id="create-status">
+                    <i class="material-icons md-18">send</i> Publicar
+                </button>
             </div>
         </form>
         <div class="card-body" v-else>

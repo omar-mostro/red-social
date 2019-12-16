@@ -1881,6 +1881,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1916,6 +1918,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/auth */ "./resources/js/mixins/auth.js");
+/* harmony import */ var _mixins_auth__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_mixins_auth__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1936,11 +1940,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       statusesList: []
     };
+  },
+  mixins: [_mixins_auth__WEBPACK_IMPORTED_MODULE_0___default.a],
+  methods: {
+    like: function like(status) {
+      this.redirectIfGuest();
+      axios.post("/statuses/".concat(status.id, "/likes")).then(function (res) {
+        status.is_liked = true;
+        status.likes_count++;
+      })["catch"](function (err) {
+        console.log(err.response.data);
+      });
+    },
+    unlike: function unlike(status) {
+      this.redirectIfGuest();
+      axios["delete"]("/statuses/".concat(status.id, "/likes")).then(function (res) {
+        status.is_liked = false;
+        status.likes_count--;
+      })["catch"](function (err) {
+        console.log(err.response.data);
+      });
+    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -37390,7 +37439,10 @@ var staticRenderFns = [
           staticClass: "btn btn-primary",
           attrs: { type: "submit", id: "create-status" }
         },
-        [_vm._v("Publicar")]
+        [
+          _c("i", { staticClass: "material-icons md-18" }, [_vm._v("send")]),
+          _vm._v(" Publicar\n            ")
+        ]
       )
     ])
   }
@@ -37449,7 +37501,58 @@ var render = function() {
           _c("p", { staticClass: "card-text text-secondary" }, [
             _vm._v(_vm._s(status.body))
           ])
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "card-footer p-2 d-flex justify-content-between align-items-center"
+          },
+          [
+            status.is_liked
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-link",
+                    attrs: { dusk: "unlike-btn" },
+                    on: {
+                      click: function($event) {
+                        return _vm.unlike(status)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "far fa-thumbs-up text-primary" }),
+                    _vm._v(" TE GUSTA\n            ")
+                  ]
+                )
+              : _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-link",
+                    attrs: { dusk: "like-btn" },
+                    on: {
+                      click: function($event) {
+                        return _vm.like(status)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-thumbs-up text-primary" }),
+                    _vm._v(" Me Gusta\n            ")
+                  ]
+                ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mr-2 text-secondary" }, [
+              _c("i", { staticClass: "far fa-thumbs-up" }),
+              _vm._v(" "),
+              _c("span", { attrs: { dusk: "likes-count" } }, [
+                _vm._v(_vm._s(status.likes_count))
+              ])
+            ])
+          ]
+        )
       ])
     }),
     0
@@ -49851,6 +49954,11 @@ module.exports = {
     },
     isGuest: function isGuest() {
       return !this.isAuthenticated;
+    }
+  },
+  methods: {
+    redirectIfGuest: function redirectIfGuest() {
+      if (this.isGuest) return window.location.href = "".concat(this.$baseUrl, "/login");
     }
   }
 };
