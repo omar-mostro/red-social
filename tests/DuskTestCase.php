@@ -13,7 +13,7 @@ abstract class DuskTestCase extends BaseTestCase
 
     use CreatesApplication;
 
-    public function tearDown() :void
+    public function tearDown(): void
     {
         parent::tearDown();
 
@@ -46,12 +46,13 @@ abstract class DuskTestCase extends BaseTestCase
             '--window-size=1400,1080',
             '--log-level=3', // Add this line
             '--silent' // Add this line
-        ]);
+        ])
+            ->setExperimentalOption('excludeSwitches', ['enable-logging']);
 
         return RemoteWebDriver::create(
             'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
-            )
+            ChromeOptions::CAPABILITY, $options
+        )
         );
     }
 }

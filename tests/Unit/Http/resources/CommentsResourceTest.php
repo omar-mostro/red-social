@@ -20,9 +20,15 @@ class CommentsResourceTest extends TestCase
 
         $commentResource = CommentResource::make($comment)->resolve();
 
-        $this->assertEquals(1, count($commentResource), 'El recurso CommentResource solo puede retornar 1 valor');
+        $this->assertEquals(6, count($commentResource), 'El recurso CommentResource contiene el valor incorrecto de parametros');
 
         $this->assertEquals($comment->body, $commentResource['body']);
+        $this->assertEquals($comment->user->name, $commentResource['user_name']);
+        $this->assertEquals('https://aprendible.com/images/default-avatar.jpg', $commentResource['user_avatar']);
+        $this->assertEquals(0, $commentResource['likes_count']);
+        $this->assertEquals(false, $commentResource['is_liked']);
+        $this->assertEquals($comment->id, $commentResource['id']);
+
 
 
     }

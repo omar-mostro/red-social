@@ -7,11 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Like::class, function (Faker $faker) {
     return [
-        'user_id' => function(){
-        return factory(\App\User::class)->create();
-        },
-        'status_id' => function(){
-        return factory(\App\Models\Status::class)->create();
-    }
+        'user_id' => factory(\App\User::class)->create()
     ];
 });

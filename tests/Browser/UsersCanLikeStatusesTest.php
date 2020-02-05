@@ -27,15 +27,13 @@ class UsersCanLikeStatusesTest extends DuskTestCase
                 ->waitForText($status->body)
                 ->assertSeeIn('@likes-count', 0)
                 ->press('@like-btn')
-                ->waitForText('TE GUSTA')
                 ->assertSee('TE GUSTA')
+                ->waitForText('1')
                 ->assertSeeIn('@likes-count', 1)
-
                 ->press('@unlike-btn')
-                ->waitForText('Me Gusta')
                 ->assertSee('Me Gusta')
-                ->assertSeeIn('@likes-count', 0)
-            ;
+                ->waitForText('0')
+                ->assertSeeIn('@likes-count', 0);
         });
     }
 
@@ -47,13 +45,12 @@ class UsersCanLikeStatusesTest extends DuskTestCase
     {
         $status = factory(Status::class)->create();
 
-        $this->browse(function (Browser $browser) use ( $status) {
+        $this->browse(function (Browser $browser) use ($status) {
             $browser
                 ->visit(route('index'))
                 ->waitForText($status->body)
                 ->press('@like-btn')
-                ->assertUrlIs(route('login'))
-            ;
+                ->assertUrlIs(route('login'));
         });
     }
 }

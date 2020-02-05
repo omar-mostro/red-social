@@ -3,6 +3,7 @@
 namespace Tests\Unit\Http\resources;
 
 use App\Http\Resources\StatusResource;
+use App\Models\Comment;
 use App\Models\Status;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -17,10 +18,8 @@ class StatusResourceTest extends TestCase
     public function a_status_resource_must_have_the_necessary_fields()
     {
         $status = factory(Status::class)->create();
-
+        factory(Comment::class)->create(['status_id' => $status->id]);
         $statusResource = StatusResource::make($status)->resolve();
-
-        //dd($statusResource);
 
         $this->assertEquals($status->id, $statusResource['id']);
         $this->assertEquals($status->body, $statusResource['body']);
@@ -29,6 +28,8 @@ class StatusResourceTest extends TestCase
         $this->assertEquals($status->created_at->diffForHumans(), $statusResource['ago']);
         $this->assertEquals(false, $statusResource['is_liked']);
         $this->assertEquals(0, $statusResource['likes_count']);
+
+        $this->assertInstanceOf(Comment::class, $statusResource['comments']->first()->resource);
 
     }
 }
