@@ -3,10 +3,10 @@
         <div class="card-body d-flex flex-column">
             <div class="d-flex align-items-center mb-3">
                 <img class="rounded-circle mr-3 shadow-sm" width="40px"
-                     :src="status.user_avatar"
+                     :src="status.user.avatar"
                      alt="">
                 <div class="">
-                    <h5 class="mb-1"><a :href="status.user_link">{{status.user_name}} </a></h5>
+                    <h5 class="mb-1"><a :href="status.user.link">{{status.user.name}} </a></h5>
                     <div class="small text-muted">
                         {{status.ago}}
                     </div>
@@ -30,11 +30,11 @@
         <div class="card-footer">
             <div v-for="comment in comments" class="mb-2">
                 <div class="d-flex">
-                    <img class="rounded shadow-sm mr-2" width="34" height="34" :src="comment.user_avatar" alt="">
+                    <img class="rounded shadow-sm mr-2" width="34" height="34" :src="comment.user.avatar" alt="">
                     <div class="flex-grow-1">
                         <div class="card shadow-sm border-0 text-secondary">
                             <div class="card-body p-2 ">
-                                <a :href="comment.user_link"><strong>{{comment.user_name}}</strong></a>
+                                <a :href="comment.user.link"><strong>{{comment.user.name}}</strong></a>
                                 <p>
                                     {{comment.body}}
                                 </p>

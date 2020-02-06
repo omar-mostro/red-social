@@ -38322,13 +38322,13 @@ var render = function() {
       _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
         _c("img", {
           staticClass: "rounded-circle mr-3 shadow-sm",
-          attrs: { width: "40px", src: _vm.status.user_avatar, alt: "" }
+          attrs: { width: "40px", src: _vm.status.user.avatar, alt: "" }
         }),
         _vm._v(" "),
         _c("div", {}, [
           _c("h5", { staticClass: "mb-1" }, [
-            _c("a", { attrs: { href: _vm.status.user_link } }, [
-              _vm._v(_vm._s(_vm.status.user_name) + " ")
+            _c("a", { attrs: { href: _vm.status.user.link } }, [
+              _vm._v(_vm._s(_vm.status.user.name) + " ")
             ])
           ]),
           _vm._v(" "),
@@ -38385,7 +38385,7 @@ var render = function() {
                 attrs: {
                   width: "34",
                   height: "34",
-                  src: comment.user_avatar,
+                  src: comment.user.avatar,
                   alt: ""
                 }
               }),
@@ -38399,8 +38399,8 @@ var render = function() {
                     { staticClass: "card shadow-sm border-0 text-secondary" },
                     [
                       _c("div", { staticClass: "card-body p-2 " }, [
-                        _c("a", { attrs: { href: comment.user_link } }, [
-                          _c("strong", [_vm._v(_vm._s(comment.user_name))])
+                        _c("a", { attrs: { href: comment.user.link } }, [
+                          _c("strong", [_vm._v(_vm._s(comment.user.name))])
                         ]),
                         _vm._v(" "),
                         _c("p", [
