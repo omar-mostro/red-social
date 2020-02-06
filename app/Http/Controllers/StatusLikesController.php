@@ -17,51 +17,26 @@ class StatusLikesController extends Controller
            'user_id' => auth()->id()
         ]);*/
 
-        return ['response' => 'success'];
+        return [
+            'response' => 'success',
+            'likes_count' => $status->likesCount()
+            ];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Status $status
+     * @return array
      */
     public function destroy(Status $status)
     {
         $status->unlike();
+
+        return [
+            'response' => 'success',
+            'likes_count' => $status->likesCount()
+        ];
     }
 }

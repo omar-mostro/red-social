@@ -5,6 +5,7 @@ module.exports = {
         //computed es más optimo y funciona de forma asynxrona a diferenfia de watch
         user() {
             if (this.isAuthenticated){
+                console.log('user', user);
                 return JSON.parse(user.content);
             }
 

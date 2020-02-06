@@ -17,10 +17,12 @@ class CommentResource extends JsonResource
         return [
             'body' => $this->body,
             'user_name' => $this->user->name,
-            'user_avatar' => 'https://aprendible.com/images/default-avatar.jpg',
+            'user_avatar' =>  $this->user->avatar(),
             'likes_count' => $this->likesCount(),
             'is_liked' => $this->isLiked(),
             'id' => $this->id,
+            'user_link' => $this->user->link(),
+            'user' => UserResource::make($this->user)
         ];
     }
 }

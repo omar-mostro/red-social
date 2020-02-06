@@ -45,7 +45,11 @@ class CanLikeCommentsTest extends TestCase
 
         $this->assertCount(0, $this->comment->likes);
 
-        $this->postJson(route('comments.likes.store', $this->comment));
+        $response = $this->postJson(route('comments.likes.store', $this->comment));
+
+        $response->assertJsonFragment([
+            'likes_count' => 1
+        ]);
 
         $this->assertCount(1, $this->comment->fresh()->likes);
 
@@ -59,12 +63,20 @@ class CanLikeCommentsTest extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
-        $this->postJson(route('comments.likes.store', $this->comment));
+        $response = $this->postJson(route('comments.likes.store', $this->comment));
+
+        $response->assertJsonFragment([
+            'likes_count' => 2
+        ]);
 
         $this->assertCount(2, $this->comment->fresh()->likes);
 
         //se elimina el like del usuario actual autenticado y solo queda un solo like
-        $this->deleteJson(route('comments.likes.destroy', $this->comment));
+        $response = $this->deleteJson(route('comments.likes.destroy', $this->comment));
+
+        $response->assertJsonFragment([
+            'likes_count' => 1
+        ]);
 
         $this->assertCount(1, $this->comment->fresh()->likes);
         $this->assertDatabaseMissing('likes', [
