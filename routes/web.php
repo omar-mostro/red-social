@@ -31,6 +31,6 @@ Route::delete('/comments/{comment}/likes', 'CommentLikesController@destroy')->na
 //Users routes
 Route::get('@{user}', 'UsersController@show')->name('users.show');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::auth();
